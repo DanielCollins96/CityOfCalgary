@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             camName = camName.substring(camName.length - 2, camName.length).trim()
             let camOpt = document.createElement('option');
             camOpt.text = camName;
+            cameraInput.appendChild(camOpt)
         }
     }
 
@@ -52,7 +53,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         for (loc of cameras){
             let streetOpt = document.createElement('option');
             streetOpt.text = loc.camera_location;
-            streetInput.appendChild(opt);
+            streetInput.appendChild(streetOpt);
         }
     }
 
