@@ -1,0 +1,46 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    display: grid;
+    grid-template-areas:
+    'header header header header header header'
+    'aside main main main right right'
+    'aside footer footer footer footer footer';
+}
+
+header {
+    grid-area: header;
+}
+aside {
+    grid-area: aside;
+}
+main {
+grid-area: main;
+
+}
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  input[type=number], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+#feed {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    overflow-y: scroll;
+    height: 70vh;
+}
+footer {
+    grid-area: footer;
+}
