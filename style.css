@@ -12,6 +12,7 @@ header {
 }
 aside {
     grid-area: aside;
+    margin: 0 20px
 }
 main {
 grid-area: main;
