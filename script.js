@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     let feed = document.querySelector('#feed');
     let cameraInput = document.querySelector('#number');
     let streetInput = document.querySelector('#streets');
-    let form = document.querySelector('form')
+    let form = document.querySelector('form');
+    let modal = document.querySelector('#myModal');
+    let close = document.querySelector('span');
     let cameras = [];
 
     fetch('https://data.calgary.ca/resource/k7p9-kppz.json')
@@ -57,6 +59,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
             streetInput.appendChild(streetOpt);
         }
     }
+
+    feed.addEventListener('click', (e) => {
+        if(e.target && e.target.nodeName == "IMG"){
+            console.log(e.target.src)
+            console.log('imagegegeg')
+            document.querySelector('#img01').src = e.target.src
+            modal.style.display = "block";
+
+        }
+    })
+
     form.addEventListener('submit', (event) => {
         event.preventDefault();
         console.log(streetInput)
@@ -68,8 +81,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
             let filteredCam = cameras.filter((element) => {
                 return element.camera_location == streetInput.value
             })
+            filteredCam = filteredCam.sort(function(a, b){return a.camera_location - b.camera_location});
             mainArea(filteredCam);
         }
+    })
+
+    close.addEventListener('click', (e) => {
+        modal.style.display = "none";
     })
 
     cameraInput.addEventListener('keyup', (event) => {
