@@ -1,0 +1,10 @@
+.crash-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 20rem;
+    padding: 5px;
+}

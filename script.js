@@ -16,6 +16,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     })
     .then((res) => {
         console.log(res)
+        console.log(res[0].camera.slice(7))
+        //whoa nelly this is a big one
+        res.sort(function(a,b) {return (Number(a.camera.slice(7)) > Number(b.camera.slice(7))) ? 1 : ((Number(b.camera.slice(7)) > Number(a.camera.slice(7))) ? -1 : 0);} );
+
         cameras = res;
         mainArea(cameras);
         // sideCamInput();
@@ -25,14 +29,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     let mainArea = function (cams){
         feed.innerHTML = "";
         for (cam of cams){
-            console.log(cam.camera_url.url)
             let box = document.createElement('div');  
             let h4 = document.createElement('h4');
             h4.innerText = cam.camera;
             let p = document.createElement('p');
             p.innerText = cam.camera_location;
             let img = document.createElement('img');
-            // console.l
+            // console.log(cam.camera.slice(7))
             img.width = "200";
             img.src = cam.camera_url.url;
             box.appendChild(h4);
@@ -63,7 +66,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     feed.addEventListener('click', (e) => {
         if(e.target && e.target.nodeName == "IMG"){
             console.log(e.target.src)
-            console.log('imagegegeg')
             document.querySelector('#img01').src = e.target.src
             modal.style.display = "block";
 

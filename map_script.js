@@ -1,5 +1,13 @@
-document.addEventListener('DOMContentLoaded', (event) => {
+var map;
 
+document.addEventListener('DOMContentLoaded', (event) => {
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: -34.397, lng: 150.644},
+        zoom: 8
+      });
+    }
+    console.log(moment())
     const list = document.querySelector('.crash-list')
 
     fetch('https://data.calgary.ca/resource/35ra-9556.json?$limit=30&$order=start_dt DESC')
@@ -16,19 +24,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
     let createList = (crashes) => {
         crashes.forEach(crash => {
             list.innerHTML +=
-            `<div class="row">
-            <div class="col s12 m6">
-              <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
-                  <span class="card-title">${crash.description}</span>
-                  <p>${crash.incident_info}</p>
-                  <br>
-                  <p>(${crash.latitude}, ${crash.longitude})</p>
-                  <p>${crash.start_dt}</p>
-                  </div>
-                  </div>
-                  </div>
-                  </div>`
+                `<div class="card bg-light mb-3" style="max-width: 20rem;">
+                    <div class="card-header">${crash.description}</div>
+                    <div class="card-body">
+                    <p>${crash.incident_info}</p>
+                    <p>${moment(crash.start_dt).fromNow()}</p>
+                    </div>
+                    
+                    </div>`
+                    // <br>
+                    // <p>(${crash.latitude}, ${crash.longitude})</p>
                 })
             }
         });
